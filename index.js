@@ -41,7 +41,7 @@ const questions =[
     },
     {
         //list of license
-        type: 'input',
+        type: 'list',
         message: "What license did you use?",
         name: 'license',
         choices: ['The MIT License', 'The GPL License', 'Apache License', 'GNU License', 'N/A'],
@@ -95,3 +95,5 @@ function init() {
 
 // Function call to initialize app
 init();
+
+module.exports = questions;
