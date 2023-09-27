@@ -7,13 +7,13 @@ function renderLicenseBadge(license) {
   }
 
   switch(license) {
-    case 'MIT': 
+    case 'The MIT License': 
       return '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
-    case 'GPL':
+    case 'The GPL License':
       return '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)';
-    case 'Apache': 
+    case 'Apache License': 
       return '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)';
-    case 'GNU':
+    case 'GNU License':
       return '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)';
     default:
       return '';  
@@ -26,8 +26,18 @@ function renderLicenseLink(license) {
   if(!license) {
     return '';
   }
-
-  return `[License](${license})`;
+  switch(license) {
+    case 'The MIT License': 
+      return 'https://opensource.org/licenses/MIT';
+    case 'The GPL License':
+      return 'https://www.gnu.org/licenses/gpl-3.0';
+    case 'Apache License': 
+      return 'https://opensource.org/licenses/Apache-2.0';
+    case 'GNU License':
+      return 'https://www.gnu.org/licenses/gpl-3.0';
+    default:
+      return '';  
+  }
 }
 
 // TODO: Create a function that returns the license section of README
@@ -46,28 +56,28 @@ function renderLicenseSection(license) {
 function generateMarkdown(data) {
   return `# ${data.title}
 
-  https://github.com/${data.Username}/${data.Title}
   ## Description
-  ${data.Description}
+  ${data.description}
   ## Table Of Contents
   - [Installation](#installation)
   - [Usage](#usage)
   - [Contributing](#contributing)
   - [Tests](#tests)
-  - [Questions?](#questions?)
+  - [Questions](#questions)
   ## Installation
-  The following necessary dependencies must be installed to run the application, ${data.Installations}
+  The following necessary dependencies must be installed to run the application, ${data.installations}
   ## Usage
-  In order to use this app, ${data.Usages}
-  ${renderLicenseSection(data.License)}
-  This project is licensed under the ${renderLicenseBadge()} license.
-  The license link can be found here ${renderLicenseLink}.
+  In order to use this app, ${data.usages}
+  ${renderLicenseSection(data.license)}
+  This project is licensed under the ${renderLicenseBadge(data.license)}.
+  The license link can be found here ${renderLicenseLink(data.license)}.
   ## Contributing
-  Contibutors: ${data.Contribution}
+  Contributors: ${data.contribution}
   ## Tests
-  The following is needed in order to run the test: ${data.Test}
+  The following is needed in order to run the test: ${data.test}
   ## Questions
-  If you have any questions about the repo or want to open an issue or contact ${data.Usages}
+  If you have any other questions about this project, please contact me directly at ${data.email} or through GitHub at https://github.com/${data.git}.
+  
 
 `;
 }

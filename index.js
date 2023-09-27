@@ -6,36 +6,36 @@ const generateMarkdown = require('./utils/generateMarkdown');
 const questions =[
     {
         type:'input',
-        message: "What's the project title",
+        message: "What's the project title?",
         name: 'title',
         //validate property to check that the user provides a value
         validate: (value) =>{ if(value){return true} else {return 'I need a value to continue'}}
     },
     {
         type: 'input',
-        message: "How do you install your app?",
-        name: 'installation',
+        message: "What is required to install in order to run this application?",
+        name: 'installations',
         //validate property to check that the user provides a value
         validate: (value) =>{ if(value){return true} else {return 'I need a value to continue'}}
     },
     {
         type: 'input',
-        message: "Instructions to be follow?",
-        name: 'instructions',
+        message: "What is needed in order to run the test?",
+        name: 'test',
         //validate property to check that the user provides a value
         validate: (value) =>{ if(value){return true} else {return 'I need a value to continue'}}
     },
     {
         type: 'input',
-        message: "Any credits?",
-        name: 'credit',
+        message: "How should people contribute to the project?",
+        name: 'contribution',
         //validate property to check that the user provides a value
         validate: (value) =>{ if(value){return true} else {return 'I need a value to continue'}}
     },
     {
         type: 'input',
         message: "How do you use your app?",
-        name: 'usage',
+        name: 'usages',
         //validate property to check that the user provides a value
         validate: (value) =>{ if(value){return true} else {return 'I need a value to continue'}}
     },
@@ -57,8 +57,8 @@ const questions =[
     },
     {
         type: 'input',
-        message: "Linkedin Username:",
-        name: 'linkedin',
+        message: "Describe what the app will do?",
+        name: 'description',
         //validate property to check that the user provides a value
         validate: (value) =>{ if(value){return true} else {return 'I need a value to continue'}}
     },
@@ -86,7 +86,7 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.propmt(questions)
+    inquirer.prompt(questions)
     .then(function(data) {
         writeToFile("README.md", generateMarkdown(data));
         console.log(data)
